@@ -1,65 +1,75 @@
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden; /* Prevents scrollbars when button moves */
+body, html {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden; background: #000; /* Start black for the intro */
+    font-family: 'Georgia', serif;
+}
+
+/* Intro Animations */
+#intro-container {
+    position: fixed; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    color: white; z-index: 100;
+}
+
+.intro-text {
+    position: absolute; opacity: 0; text-align: center; width: 80%;
+    animation: fadeThrough 4s ease-in-out forwards;
+}
+
+#text2 { animation-delay: 3.5s; }
+#text3 { animation-delay: 7s; }
+
+@keyframes fadeThrough {
+    0% { opacity: 0; transform: translateY(20px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Main Content */
+#main-content {
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+    transition: opacity 2s ease;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 40px;
-    border-radius: 30px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    z-index: 10;
-    max-width: 400px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 20px; border-radius: 40px;
+    text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    width: 85%; max-width: 350px; z-index: 10;
+    animation: slideUp 1s ease-out forwards;
 }
 
-.title { color: #d63384; font-size: 2.5rem; }
-.question { font-size: 1.4rem; color: #555; margin-bottom: 30px; }
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    height: 60px; /* Space for the NO button to sit in */
+@keyframes slideUp {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(0); }
 }
+
+.envelope { font-size: 50px; animation: bounce 2s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.title { color: #d63384; margin: 10px 0; }
+.button-group { position: relative; height: 150px; margin-top: 20px; }
 
 button {
-    padding: 12px 25px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.2s;
+    padding: 15px 30px; border: none; border-radius: 50px;
+    font-size: 1.1rem; font-weight: bold; cursor: pointer;
+    transition: 0.3s; position: absolute;
 }
 
-#yesBtn { background-color: #ff4d6d; color: white; }
-#yesBtn:hover { transform: scale(1.1); }
+#yesBtn { background: #ff4d6d; color: white; left: 50%; transform: translateX(-110%); }
+#noBtn { background: #888; color: white; left: 50%; transform: translateX(10%); }
 
-#noBtn {
-    background-color: #888;
-    color: white;
-    position: absolute; /* Crucial for movement */
-}
+.hidden { display: none !important; }
 
-.hidden { display: none; }
-
-/* Floating Hearts Styling */
+/* Floating Hearts */
 .heart {
-    position: absolute;
-    color: #ff4d6d;
-    font-size: 20px;
-    animation: float 5s linear infinite;
-    opacity: 0.8;
+    position: absolute; color: #ff4d6d; pointer-events: none;
+    animation: floatUp 4s linear forwards;
 }
 
-@keyframes float {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+@keyframes floatUp {
+    to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
