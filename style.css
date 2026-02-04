@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; /* Prevents scrollbars when button moves */
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    z-index: 10;
+    max-width: 400px;
+}
+
+.title { color: #d63384; font-size: 2.5rem; }
+.question { font-size: 1.4rem; color: #555; margin-bottom: 30px; }
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    height: 60px; /* Space for the NO button to sit in */
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+#yesBtn { background-color: #ff4d6d; color: white; }
+#yesBtn:hover { transform: scale(1.1); }
+
+#noBtn {
+    background-color: #888;
+    color: white;
+    position: absolute; /* Crucial for movement */
+}
+
+.hidden { display: none; }
+
+/* Floating Hearts Styling */
+.heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: float 5s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
